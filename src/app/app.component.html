@@ -1,0 +1,123 @@
+<div class="container">
+  <div *ngIf="!nombre; else juego">
+    <app-titulo></app-titulo>
+    <div *ngIf="!palabras; else elseBlock">
+      <h4>{{tituloForm}}</h4>
+      <hr>
+      <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate="">
+        <div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Palabra 1</label>
+            <div class="col-8">
+
+              <input class="form-control" type="password" placeholder="Primera palabra" name="palabra1"
+                [(ngModel)]="palabrasArray.palabra1" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Palabra 2</label>
+            <div class="col-8">
+
+              <input class="form-control" type="password" placeholder="Segunda palabra" name="palabra2"
+                [(ngModel)]="palabrasArray.palabra2" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Palabra 3</label>
+          <div class="col-md-8">
+            <input class="form-control" type="password" placeholder="Tercera palabra" name="palabra3"
+              [(ngModel)]="palabrasArray.palabra3" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Palabra 4</label>
+          <div class="col-md-8">
+
+            <input class="form-control" type="password" placeholder="Cuarta palabra" name="palabra4"
+              [(ngModel)]="palabrasArray.palabra4" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Palabra 5</label>
+          <div class="col-md-8">
+            <input class="form-control" type="password" placeholder="Quinta palabra" name="palabra5"
+              [(ngModel)]="palabrasArray.palabra5" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">&nbsp;</label>
+          <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-primary">
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <ng-template #elseBlock>
+      <div>
+        <h4>{{tituloFormNombre}}</h4>
+        <hr>
+        <form #otroForm (ngSubmit)="usuario(forma)" #forma="ngForm" novalidate="">
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" placeholder="Nombre de usuario" name="nombreUsuario"
+                [(ngModel)]="nombreUsuario" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-8">
+              <button type="submit" class="btn btn-primary">
+                Siguiente
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </div>
+  <ng-template #juego>
+    <app-titulo></app-titulo>
+    <div class="row">
+      <div class="col-md-3" id="c">
+          <div>
+            <div>
+              <br>
+              <h2> Acciones</h2>
+            </div>
+            <div>
+              <br>
+              <button (click)='nuevoJuego()' class="btn btn-primary">
+                Nuevo juego
+              </button>
+            </div>
+            <div>
+              <br>
+              <div class="col-md-6">
+                <input class="form-control" type="text" name="letra" [(ngModel)]="letra" size="5">
+              </div>
+            </div>
+            <div>
+              <br>
+              <button type="button" (click)='enviarLetra(letra);' class="btn btn-primary">
+                Enviar letra
+              </button>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-4" id="a">
+        <app-estadisticas [error]="mostrar" [acierto]="match"></app-estadisticas>
+      </div>
+      <div class="col-md-4" id="b">
+        <app-figura [figura]="mostrar" [palabraMostrar]="adivinar"></app-figura>
+      </div>      
+    </div>
+    <app-mensajes [mensaje]="mensaje"></app-mensajes>
+    <div>
+        <h6 align="center">Estudiante:  Jorge Rodríguez Ormeño - Desarollo Frontend con Angular</h6>
+    </div>
+  </ng-template>
+</div>
