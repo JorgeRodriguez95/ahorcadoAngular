@@ -9,21 +9,23 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
   title = 'Trabajo2';
 
-  palabras:boolean = false;
-  nombre:boolean = false;
-  tituloForm:string = 'Ingresa 5 palabras';
-  tituloFormNombre:string = 'Ingresa tu nombre';
-  nombreUsuario:string = "";
-  auxNombre:string = "";
-  seleccionada:string = "";
-  letra:string = "";
-  mostrar:number = 0;
-  match:number = 0;
-  adivinar:string = "";
+  palabras: boolean = false;
+  nombre: boolean = false;
+  tituloForm: string = 'Ingresa 5 palabras';
+  tituloFormNombre: string = 'Ingresa tu nombre';
+  nombreUsuario: string = "";
+  auxNombre: string = "";
+  seleccionada: string = "";
+  letra: string = "";
+  mostrar: number = 0;
+  match: number = 0;
+  adivinar: string = "";
   mostrarArray: string[];
-  resultado:string = '';
-  mensaje:string = '';
-  final:boolean = false;
+  resultado: string = '';
+  mensaje: string = '';
+  final: boolean = false;
+
+  usadas: string[] = [];
 
   palabrasArray: any = {
     palabra1: null,
@@ -46,8 +48,8 @@ export class AppComponent {
   }
 
   usuario(forma: NgForm) {
-    /*console.log(this.nombreUsuario);
-    console.log(this.seleccionada);    */
+    /*console.log(this.nombreUsuario);*/
+    console.log(this.seleccionada);    
     this.adivinar = '_ '.repeat(this.seleccionada.length);
     this.nombre = true;
     this.auxNombre = this.nombreUsuario;
@@ -63,12 +65,21 @@ export class AppComponent {
     this.mostrar = 0;
     this.match = 0;
     this.letra = "";
+    this.usadas = [];
   }
 
   enviarLetra(letra) {
     let letraUp = letra.toUpperCase();
     console.log(letraUp);
-    this.verificarLetra(letraUp);
+    if (this.usadas.indexOf(letraUp) >= 0) {
+      console.log("hola");
+      this.letra = "";
+      alert("repetida");
+    } else {
+      this.usadas.push(letraUp);
+      console.log(this.usadas);
+      this.verificarLetra(letraUp);
+    }
   }
 
   verificarLetra(letra) {

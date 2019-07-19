@@ -97,7 +97,7 @@
             <div>
               <br>
               <div class="col-md-6">
-                <input class="form-control" type="text" name="letra" [(ngModel)]="letra" size="5">
+                <input class="form-control" type="text" name="letra" [(ngModel)]="letra" size="1">
               </div>
             </div>
             <div>
@@ -109,7 +109,7 @@
           </div>
       </div>
       <div class="col-md-4" id="a">
-        <app-estadisticas [error]="mostrar" [acierto]="match"></app-estadisticas>
+        <app-estadisticas [error]="mostrar" [acierto]="match" [usadas]="usadas"></app-estadisticas>
       </div>
       <div class="col-md-4" id="b">
         <app-figura [figura]="mostrar" [palabraMostrar]="adivinar"></app-figura>

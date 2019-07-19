@@ -9,9 +9,10 @@ export class EstadisticasComponent implements OnInit {
 
   @Input('acierto') public acierto;
   @Input('error') public error;
+  @Input('usadas') public usadas;
 
   constructor() {
-   
+
   }
 
   ngOnInit() {
